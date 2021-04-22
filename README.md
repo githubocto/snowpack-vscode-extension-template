@@ -6,6 +6,10 @@ This is a template for create-snowpack-app which scaffolds a VS Code extension w
 npx create-snowpack-app my-vscode-extension --template @githubocto/snowpack-vscode-extension-template
 ```
 
+🚫 **Edit:** Nope, this won't work for `create-snowpack-app` because CSA strips out all the parts in package.json that are needed for a VS Code extension.
+
+✅ **Workaround**: Clone this repo, `rm -rf .git` and then edit to your hearts' content.
+
 ## Why does this exist?
 
 The VS Code extension environment comes with a lot of limitations that make it difficult to develop for. Webviews run inside an iframe, and must communicate with the extension via message passing. A strict content security policy is imposed, so that extensions can't go off and do Bad Things™ willy-nilly. There's no such thing as HMR.
