@@ -1,5 +1,5 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
-module.exports = {
+export default {
   mount: {
     'src/webviews/public': { url: '/', static: true },
     'src/webviews/src': { url: '/' },
