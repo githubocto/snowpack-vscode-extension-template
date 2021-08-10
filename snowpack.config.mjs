@@ -29,4 +29,7 @@ export default {
   buildOptions: {
     out: 'out/webviews',
   },
+  devOptions: {
+    tailwindConfig: './tailwind.config.js',
+  },
 }
