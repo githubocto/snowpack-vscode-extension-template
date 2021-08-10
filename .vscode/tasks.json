@@ -4,14 +4,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "script": "build",
-      "label": "snowpack-build",
-      "type": "npm"
-    },
-    {
+      "type": "npm",
       "script": "dev",
       "label": "snowpack-build-dev",
-      "type": "npm",
       "problemMatcher": {
         "owner": "typescript",
         "fileLocation": "absolute",
@@ -34,6 +29,7 @@
     {
       "type": "npm",
       "script": "watch",
+      "label": "snowpack-build-watch",
       "problemMatcher": "$tsc-watch",
       "isBackground": true,
       "presentation": {
