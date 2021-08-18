@@ -21,14 +21,18 @@ export const Input: FunctionComponent<InputProps> = props => {
   if (props.error) {
     feedback = (
       <div className="pt-2 text-vscode-inputValidation-errorForeground flex flex-row items-start">
-        <div className="codicon codicon-error pr-1 text-sm pt-px" />
+        <div className="icon">
+          <div className="codicon codicon-error pr-1 text-sm pt-px" />
+        </div>
         <div>{props.error}</div>
       </div>
     )
   } else if (props.success) {
     feedback = (
       <div className="pt-2 text-vscode-inputValidation-infoForeground flex flex-row items-start">
-        <div className="codicon codicon-pass pr-1 text-sm pt-px" />
+        <div className="icon">
+          <div className="codicon codicon-pass pr-1 text-sm pt-px" />
+        </div>
         <div>{props.success}</div>
       </div>
     )
