@@ -4,9 +4,9 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "vite build",
       "type": "npm",
       "script": "dev",
-      "label": "snowpack-build-dev",
       "problemMatcher": {
         "owner": "typescript",
         "fileLocation": "absolute",
@@ -20,26 +20,33 @@
         },
         "background": {
           "activeOnStart": false,
-          "beginsPattern": "^\\[nodemon\\] starting",
-          "endsPattern": "^\\[nodemon\\] clean exit"
+          "beginsPattern": "build started...",
+          "endsPattern": "^built in \\d+ms."
         }
-      },
-      "isBackground": true
-    },
-    {
-      "type": "npm",
-      "script": "watch",
-      "label": "snowpack-build-watch",
-      "problemMatcher": "$tsc-watch",
-      "isBackground": true,
-      "presentation": {
-        "reveal": "never"
       },
       "group": {
         "kind": "build",
         "isDefault": true
       },
-      "dependsOn": ["snowpack-build-dev"]
+      "dependsOn": ["tsc watch"],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "tsc watch",
+      "type": "typescript",
+      "tsconfig": "tsconfig.json",
+      "option": "watch",
+      "problemMatcher": ["$tsc-watch"],
+      "group": "build",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      }
     }
   ]
 }
