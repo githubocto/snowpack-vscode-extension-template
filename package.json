@@ -9,7 +9,6 @@
     "lint": "eslint . --ext .ts,.tsx",
     "watch": "tsc -watch -p ./",
     "format": "prettier --write **/*.ts",
-    "build": "TAILWIND_MODE='build' snowpack build",
     "dev": "vite build"
   },
   "engines": {
