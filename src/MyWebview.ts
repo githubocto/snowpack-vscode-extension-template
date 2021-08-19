@@ -109,11 +109,11 @@ export default class MyWebview {
     // Generate the local paths to the built scripts
     // We've set up snowpack to build into the out/ directory
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, 'out/webviews/index.js')
+      vscode.Uri.joinPath(this._extensionUri, 'out/webviews/VSWebview.es.js')
     )
 
     const styleVSCodeUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, 'out/webviews/index.css')
+      vscode.Uri.joinPath(this._extensionUri, 'out/webviews/style.css')
     )
 
     const codiconsUri = webview.asWebviewUri(
