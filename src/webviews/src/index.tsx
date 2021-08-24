@@ -28,9 +28,14 @@ window.addEventListener('message', e => {
 //   data: {foo: true}
 // })
 
+const rootEl = document.getElementById('root')
+
+// TODO: dynamically require the appropriate root component
+const Component = App
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Component />
   </React.StrictMode>,
-  document.getElementById('root')
+  rootEl
 )

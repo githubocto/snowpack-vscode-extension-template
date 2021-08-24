@@ -1,10 +1,48 @@
+// import {
+//   enableHotReload,
+//   hotRequireExportedFn,
+//   registerUpdateReconciler,
+// } from '@hediet/node-reload'
+// import { Disposable } from '@hediet/std/disposable'
 import * as vscode from 'vscode'
 import MyWebview from './MyWebview'
+import { NextWebviewPanel } from './NextWebview'
+
+// if (process.env.NODE_ENV === 'development') {
+//   enableHotReload({ entryModule: module })
+// }
+// registerUpdateReconciler(module)
+
+// export class Extension {
+//   public readonly dispose = Disposable.fn()
+
+//   constructor() {
+//     super()
+
+//     // Disposables are disposed automatically on reload.
+//     const item = this.dispose.track(vscode.window.createStatusBarItem())
+//     item.text = 'Hallo Welt'
+//     item.show()
+//   }
+// }
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
-    vscode.commands.registerCommand('snowpackWebview.start', () => {
-      MyWebview.createOrShow(context.extensionUri)
+    vscode.commands.registerCommand('NextWebview.start', () => {
+      const webview = NextWebviewPanel.getInstance({
+        extensionUri: context.extensionUri,
+        name: 'NextWebview',
+        title: 'GitHub Next Webview',
+      })
+      // const webview = MyWebview.createOrShow(context.extensionUri)
+      // setInterval(() => {
+      //   // MyWebview.update()
+      //   console.log('!!!!!! reloading webview!')
+      // }, 1000)
     })
   )
+
+  // context.subscriptions.push(
+  //   hotRequireExportedFn(module, Extension, Extension => new Extension())
+  // )
 }

@@ -19,8 +19,7 @@
     "url": "git+https://github.com/githubocto/snowpack-vscode-extension-template.git"
   },
   "keywords": [
-    "snowpack",
-    "csa-template"
+    "vscode"
   ],
   "author": "Idan Gazit <idan@gazit.me>",
   "license": "MIT",
@@ -47,6 +46,7 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
+    "@hediet/node-reload": "^0.7.3",
     "nanoid": "^3.1.23",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -54,14 +54,14 @@
     "vscode-codicons": "^0.0.17"
   },
   "activationEvents": [
-    "onCommand:snowpackWebview.start"
+    "onCommand:NextWebview.start"
   ],
   "contributes": {
     "commands": [
       {
-        "command": "snowpackWebview.start",
-        "title": "Open the Snowpack Webview",
-        "category": "Snowpack Webview"
+        "command": "NextWebview.start",
+        "title": "Open Webview",
+        "category": "GitHub Next"
       }
     ]
   }

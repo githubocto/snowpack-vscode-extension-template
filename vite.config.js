@@ -15,7 +15,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/webviews/src/index.tsx'),
       name: 'VSWebview',
       formats: ['es'],
-      fileName: 'VSWebview',
+      fileName: 'index',
     },
     watch: {}, // yes, this is correct
   },
