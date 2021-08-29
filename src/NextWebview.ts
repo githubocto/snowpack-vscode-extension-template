@@ -38,10 +38,8 @@ abstract class NextWebview {
       // Enable javascript in the webview
       enableScripts: true,
 
-      // And restrict the webview to only loading content from our extension's `media` directory.
-      localResourceRoots: [
-        vscode.Uri.joinPath(this._opts.extensionUri, 'media'),
-      ],
+      // And restrict the webview to only loading content from our extension's `out` directory.
+      localResourceRoots: [vscode.Uri.joinPath(this._opts.extensionUri, 'out')],
     }
   }
 
