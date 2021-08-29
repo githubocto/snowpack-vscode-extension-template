@@ -1,7 +1,8 @@
 import React, { FunctionComponent, useState } from 'react'
 import Input from './Input'
 import Toggle from './Toggle'
-
+import { VscFlame } from 'react-icons/vsc'
+import { GoMarkGithub } from 'react-icons/go'
 type AppProps = {}
 
 const App: FunctionComponent<AppProps> = props => {
@@ -14,8 +15,11 @@ const App: FunctionComponent<AppProps> = props => {
       <div className="text-2xl font-bold text-vscode-settings-headerForeground">
         Hello, world!
       </div>
-      <div className="text-base text-vscode-foreground">
-        This is some body copy. It has the base text size.
+      <div className="text-base text-vscode-foreground flex items-baseline">
+        <div className="text-vscode-button-foreground mr-2">
+          <VscFlame />
+        </div>
+        <div>This is some body copy. It has the base text size.</div>
       </div>
       <Input
         value={val}

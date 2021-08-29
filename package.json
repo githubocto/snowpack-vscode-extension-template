@@ -50,8 +50,8 @@
     "nanoid": "^3.1.23",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "vite": "^2.4.4",
-    "vscode-codicons": "^0.0.17"
+    "react-icons": "^4.2.0",
+    "vite": "^2.4.4"
   },
   "activationEvents": [
     "onCommand:NextWebview.start"
