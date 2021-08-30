@@ -5,7 +5,7 @@ import View2 from './View2'
 import './vscode.css'
 import { VSCodeAPI } from './VSCodeAPI'
 import {
-  BrowserRouter as Router,
+  MemoryRouter as Router,
   Routes,
   Route,
   useLocation,
@@ -46,18 +46,18 @@ function AppRoutes() {
   }, [])
 
   console.log('location: ', location)
-  console.log('dataset: ', rootEl.dataset)
+  console.log('dataset: ', rootEl.dataset.name)
   return (
     <Routes>
-      <Route path="/view1" element={<View1 />} />
-      <Route path="/view2" element={<View2 />} />
+      <Route path="view1" element={<View1 />} />
+      <Route path="view2" element={<View2 />} />
     </Routes>
   )
 }
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router initialEntries={[rootEl.dataset.name]} initialIndex={0}>
       <AppRoutes />
     </Router>
   </React.StrictMode>,
