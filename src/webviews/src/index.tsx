@@ -1,8 +1,16 @@
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import View1 from './View1'
+import View2 from './View2'
 import './vscode.css'
 import { VSCodeAPI } from './VSCodeAPI'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom'
 
 // TODO: Type the incoming config data
 let config: any = {}
@@ -30,12 +38,28 @@ window.addEventListener('message', e => {
 
 const rootEl = document.getElementById('root')
 
-// TODO: dynamically require the appropriate root component
-const Component = App
+function AppRoutes() {
+  let location = useLocation()
+  let navigate = useNavigate()
+  useEffect(() => {
+    navigate(`/${rootEl.dataset.name}`, { replace: true })
+  }, [])
+
+  console.log('location: ', location)
+  console.log('dataset: ', rootEl.dataset)
+  return (
+    <Routes>
+      <Route path="/view1" element={<View1 />} />
+      <Route path="/view2" element={<View2 />} />
+    </Routes>
+  )
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <Component />
+    <Router>
+      <AppRoutes />
+    </Router>
   </React.StrictMode>,
   rootEl
 )

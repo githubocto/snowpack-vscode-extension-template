@@ -2,10 +2,10 @@ import React, { FunctionComponent, useState } from 'react'
 import Input from './Input'
 import Toggle from './Toggle'
 import { VscFlame } from 'react-icons/vsc'
-import { GoMarkGithub } from 'react-icons/go'
-type AppProps = {}
+import { Link } from 'react-router-dom'
+type View1Props = {}
 
-const App: FunctionComponent<AppProps> = props => {
+const View1: FunctionComponent<View1Props> = props => {
   const [val, setVal] = useState('')
   const [success, setSuccess] = useState<string>()
   const [err, setErr] = useState<string>()
@@ -46,8 +46,11 @@ const App: FunctionComponent<AppProps> = props => {
         checked={checked}
         handleChange={e => setChecked(e.target.checked)}
       />
+      <div>
+        <Link to="/view2">View 2</Link>
+      </div>
     </div>
   )
 }
 
-export default App
+export default View1

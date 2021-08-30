@@ -5,7 +5,7 @@
 // } from '@hediet/node-reload'
 // import { Disposable } from '@hediet/std/disposable'
 import * as vscode from 'vscode'
-import MyWebview from './MyWebview'
+// import MyWebview from './MyWebview'
 import { NextWebviewPanel } from './NextWebview'
 
 // if (process.env.NODE_ENV === 'development') {
@@ -28,17 +28,24 @@ import { NextWebviewPanel } from './NextWebview'
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
-    vscode.commands.registerCommand('NextWebview.start', () => {
+    vscode.commands.registerCommand('NextWebview1.start', () => {
       const webview = NextWebviewPanel.getInstance({
         extensionUri: context.extensionUri,
-        name: 'NextWebview',
-        title: 'GitHub Next Webview',
+        name: 'view1',
+        title: 'GitHub Next Webview 1',
       })
       // const webview = MyWebview.createOrShow(context.extensionUri)
       // setInterval(() => {
       //   // MyWebview.update()
       //   console.log('!!!!!! reloading webview!')
       // }, 1000)
+    }),
+    vscode.commands.registerCommand('NextWebview2.start', () => {
+      const webview = NextWebviewPanel.getInstance({
+        extensionUri: context.extensionUri,
+        name: 'view2',
+        title: 'GitHub Next Webview 2',
+      })
     })
   )
 

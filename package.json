@@ -47,20 +47,28 @@
   },
   "dependencies": {
     "@hediet/node-reload": "^0.7.3",
+    "history": "^5.0.1",
     "nanoid": "^3.1.23",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
+    "react-router-dom": "^6.0.0-beta.2",
     "vite": "^2.4.4"
   },
   "activationEvents": [
-    "onCommand:NextWebview.start"
+    "onCommand:NextWebview1.start",
+    "onCommand:NextWebview2.start"
   ],
   "contributes": {
     "commands": [
       {
-        "command": "NextWebview.start",
-        "title": "Open Webview",
+        "command": "NextWebview1.start",
+        "title": "Open Webview 1",
+        "category": "GitHub Next"
+      },
+      {
+        "command": "NextWebview2.start",
+        "title": "Open Webview 2",
         "category": "GitHub Next"
       }
     ]
