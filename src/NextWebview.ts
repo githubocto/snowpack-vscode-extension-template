@@ -51,24 +51,6 @@ abstract class NextWebview {
     // Prepare webview URIs
     const scriptUri = webview.asWebviewUri(this._opts.scriptUri)
     const styleUri = webview.asWebviewUri(this._opts.styleUri)
-    const codiconsUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(
-        this._opts.extensionUri,
-        'node_modules',
-        'vscode-codicons',
-        'dist',
-        'codicon.css'
-      )
-    )
-    const codiconsFontUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(
-        this._opts.extensionUri,
-        'node_modules',
-        'vscode-codicons',
-        'dist',
-        'codicon.ttf'
-      )
-    )
 
     // Return the HTML with all the relevant content embedded
     // Also sets a Content-Security-Policy that permits all the sources
@@ -85,12 +67,11 @@ abstract class NextWebview {
 				Use a content security policy to only allow loading images from https or from our extension directory,
 				and only allow scripts that have a specific nonce.
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} 'self' data:; style-src ${webview.cspSource} ${codiconsUri}; script-src 'nonce-${this._opts.nonce}'; font-src ${codiconsFontUri};">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} 'self' data:; style-src ${webview.cspSource}; script-src 'nonce-${this._opts.nonce}';">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         
 				<link href="${styleUri}" rel="stylesheet" />
-        <link href="${codiconsUri}" rel="stylesheet" />
         <script nonce="${this._opts.nonce}">
           window.acquireVsCodeApi = acquireVsCodeApi;
         </script>
