@@ -3,8 +3,9 @@ import { nanoid } from 'nanoid'
 
 type NextWebviewOptions = {
   extensionUri: vscode.Uri
-  name: string
+  route: string
   title: string
+  viewId: string
   scriptUri?: vscode.Uri
   styleUri?: vscode.Uri
   nonce?: string
@@ -79,7 +80,7 @@ abstract class NextWebview {
 				<title>Cat Scratch</title>
 			</head>
 			<body>
-				<div id="root" data-name="${this._opts.name}"></div>			
+				<div id="root" data-route="${this._opts.route}"></div>			
 				<script nonce="${this._opts.nonce}" src="${scriptUri}"></script>
 			</body>
 			</html>`
@@ -89,7 +90,7 @@ abstract class NextWebview {
 }
 
 export class NextWebviewPanel extends NextWebview implements vscode.Disposable {
-  private static instance: NextWebviewPanel | undefined
+  private static instances: { [id: string]: NextWebviewPanel } = {}
 
   private readonly panel: vscode.WebviewPanel
   private _disposables: vscode.Disposable[] = []
@@ -107,15 +108,17 @@ export class NextWebviewPanel extends NextWebview implements vscode.Disposable {
       opts
     )
 
-    if (NextWebviewPanel.instance) {
+    let instance = NextWebviewPanel.instances[_opts.viewId]
+    if (instance) {
       // If we already have an instance, use it to show the panel
-      NextWebviewPanel.instance.panel.reveal(_opts.column)
+      instance.panel.reveal(_opts.column)
     } else {
       // Otherwise, create an instance
-      NextWebviewPanel.instance = new NextWebviewPanel(_opts)
+      instance = new NextWebviewPanel(_opts)
+      NextWebviewPanel.instances[_opts.viewId] = instance
     }
 
-    return NextWebviewPanel.instance
+    return instance
   }
 
   private constructor(
@@ -124,7 +127,7 @@ export class NextWebviewPanel extends NextWebview implements vscode.Disposable {
     // Create the webview panel
     super(opts)
     this.panel = vscode.window.createWebviewPanel(
-      opts.name,
+      opts.route,
       opts.title,
       opts.column || vscode.ViewColumn.One,
       this.getWebviewOptions()
@@ -164,7 +167,8 @@ export class NextWebviewPanel extends NextWebview implements vscode.Disposable {
   public dispose() {
     // Disposes of this instance
     // Next time getInstance() is called, it will construct a new instance
-    NextWebviewPanel.instance = undefined
+    console.log('Disposing! ', this._opts.viewId)
+    delete NextWebviewPanel.instances[this._opts.viewId]
 
     // Clean up our resources
     this.panel.dispose()

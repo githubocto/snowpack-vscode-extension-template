@@ -31,8 +31,9 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('NextWebview1.start', () => {
       const webview = NextWebviewPanel.getInstance({
         extensionUri: context.extensionUri,
-        name: 'view1',
+        route: 'view1',
         title: 'GitHub Next Webview 1',
+        viewId: 'ghnextA',
       })
       // const webview = MyWebview.createOrShow(context.extensionUri)
       // setInterval(() => {
@@ -43,8 +44,9 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('NextWebview2.start', () => {
       const webview = NextWebviewPanel.getInstance({
         extensionUri: context.extensionUri,
-        name: 'view2',
+        route: 'view1',
         title: 'GitHub Next Webview 2',
+        viewId: 'ghnextB',
       })
     })
   )
