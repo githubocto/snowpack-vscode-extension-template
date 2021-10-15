@@ -26,7 +26,7 @@ window.addEventListener('message', e => {
   // Here's where you'd do stuff with the message
   // Maybe stick it into state management or something?
   const message = e.data
-  console.log(message)
+  console.debug(message)
 })
 
 // Want to send messages back out to VS Code from the webview?
@@ -45,8 +45,6 @@ function AppRoutes() {
     navigate(`/${rootEl.dataset.route}`, { replace: true })
   }, [])
 
-  console.log('location: ', location)
-  console.log('dataset: ', rootEl.dataset.route)
   return (
     <Routes>
       <Route path="view1" element={<View1 />} />

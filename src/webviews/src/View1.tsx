@@ -1,15 +1,19 @@
 import React, { FunctionComponent, useState } from 'react'
-import Input from './Input'
-import Toggle from './Toggle'
 import { VscFlame } from 'react-icons/vsc'
 import { Link } from 'react-router-dom'
+import Input from './Input'
+import useVSCodeState from './state/reactState'
+import Toggle from './Toggle'
+import VSCodeAPI from './VSCodeAPI'
 type View1Props = {}
 
 const View1: FunctionComponent<View1Props> = props => {
   const [val, setVal] = useState('')
   const [success, setSuccess] = useState<string>()
   const [err, setErr] = useState<string>()
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = useVSCodeState<boolean>(false, 'checked')
+  const [checked2, setChecked2] = useVSCodeState<boolean>(false, 'checked2')
+  console.log('Rendering View1')
   return (
     <div className="p-2 flex flex-col space-y-2">
       <div className="text-2xl font-bold text-vscode-settings-headerForeground">
@@ -46,6 +50,13 @@ const View1: FunctionComponent<View1Props> = props => {
         checked={checked}
         handleChange={e => setChecked(e.target.checked)}
       />
+      <Toggle
+        title="Another Checkbox"
+        label="Why not?"
+        checked={checked2}
+        handleChange={e => setChecked2(e.target.checked)}
+      />
+      <p>Current VSCodeAPI State: {JSON.stringify(VSCodeAPI.getState())}</p>
       <div>
         <Link to="/view2">View 2</Link>
       </div>

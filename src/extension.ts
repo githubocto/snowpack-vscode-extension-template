@@ -38,13 +38,13 @@ export function activate(context: vscode.ExtensionContext) {
       // const webview = MyWebview.createOrShow(context.extensionUri)
       // setInterval(() => {
       //   // MyWebview.update()
-      //   console.log('!!!!!! reloading webview!')
+      //   console.debug('!!!!!! reloading webview!')
       // }, 1000)
     }),
     vscode.commands.registerCommand('NextWebview2.start', () => {
       const webview = NextWebviewPanel.getInstance({
         extensionUri: context.extensionUri,
-        route: 'view1',
+        route: 'view2',
         title: 'GitHub Next Webview 2',
         viewId: 'ghnextB',
       })

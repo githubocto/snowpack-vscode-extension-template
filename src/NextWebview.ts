@@ -77,7 +77,7 @@ abstract class NextWebview {
           window.acquireVsCodeApi = acquireVsCodeApi;
         </script>
 
-				<title>Cat Scratch</title>
+				<title>Next Webview</title>
 			</head>
 			<body>
 				<div id="root" data-route="${this._opts.route}"></div>			
@@ -140,15 +140,16 @@ export class NextWebviewPanel extends NextWebview implements vscode.Disposable {
     this.panel.onDidDispose(() => this.dispose(), null, this._disposables)
 
     // Update the content based on view changes
-    this.panel.onDidChangeViewState(
-      e => {
-        if (this.panel.visible) {
-          this.update()
-        }
-      },
-      null,
-      this._disposables
-    )
+    // this.panel.onDidChangeViewState(
+    //   e => {
+    //     console.debug('View state changed! ', this._opts.viewId,)
+    //     if (this.panel.visible) {
+    //       this.update()
+    //     }
+    //   },
+    //   null,
+    //   this._disposables
+    // )
 
     this.panel.webview.onDidReceiveMessage(
       this.handleMessage,
@@ -160,6 +161,7 @@ export class NextWebviewPanel extends NextWebview implements vscode.Disposable {
   // Panel updates may also update the panel title
   // in addition to the webview content.
   public update() {
+    console.debug('Updating! ', this._opts.viewId)
     this.panel.title = this._opts.title
     this.panel.webview.html = this._getContent(this.panel.webview)
   }
@@ -167,7 +169,7 @@ export class NextWebviewPanel extends NextWebview implements vscode.Disposable {
   public dispose() {
     // Disposes of this instance
     // Next time getInstance() is called, it will construct a new instance
-    console.log('Disposing! ', this._opts.viewId)
+    console.debug('Disposing! ', this._opts.viewId)
     delete NextWebviewPanel.instances[this._opts.viewId]
 
     // Clean up our resources
@@ -180,6 +182,14 @@ export class NextWebviewPanel extends NextWebview implements vscode.Disposable {
     }
   }
 }
+
+// export class NextWebviewPanelSerializer implements vscode.WebviewPanelSerializer {
+//   deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: unknown): Thenable<void> {
+//     console.log('deserialized state: ', state)
+//     webviewPanel
+//   }
+
+// }
 
 export class NextWebviewSidebar
   extends NextWebview
