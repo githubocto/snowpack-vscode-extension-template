@@ -26,7 +26,16 @@ class VSCodeWrapper {
     window.addEventListener('message', callback)
     return () => window.removeEventListener('message', callback)
   }
+
+  public getState = (): any => {
+    return this.vscodeApi.getState() ?? {}
+  }
+
+  public setState = (newState: any): any => {
+    return this.vscodeApi.setState(newState)
+  }
 }
 
 // Singleton to prevent multiple fetches of VsCodeAPI.
-export const VSCodeAPI: VSCodeWrapper = new VSCodeWrapper()
+const VSCodeAPI = new VSCodeWrapper()
+export default VSCodeAPI

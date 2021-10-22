@@ -1,8 +1,15 @@
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import View1 from './View1'
+import View2 from './View2'
 import './vscode.css'
-import { VSCodeAPI } from './VSCodeAPI'
+import {
+  MemoryRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom'
 
 // TODO: Type the incoming config data
 let config: any = {}
@@ -18,19 +25,31 @@ window.addEventListener('message', e => {
   // Here's where you'd do stuff with the message
   // Maybe stick it into state management or something?
   const message = e.data
-  console.log(message)
+  console.debug(message)
 })
 
-// Want to send messages back out to VS Code from the webview?
-//
-// VSCodeAPI.postMessage({
-//   type: 'whatever',
-//   data: {foo: true}
-// })
+const rootEl = document.getElementById('root')
+
+function AppRoutes() {
+  let location = useLocation()
+  let navigate = useNavigate()
+  useEffect(() => {
+    navigate(`/${rootEl.dataset.route}`, { replace: true })
+  }, [])
+
+  return (
+    <Routes>
+      <Route path="view1" element={<View1 />} />
+      <Route path="view2" element={<View2 />} />
+    </Routes>
+  )
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router initialEntries={[rootEl.dataset.route]} initialIndex={0}>
+      <AppRoutes />
+    </Router>
   </React.StrictMode>,
-  document.getElementById('root')
+  rootEl
 )
