@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import View1 from './View1'
 import View2 from './View2'
 import './vscode.css'
-import { VSCodeAPI } from './VSCodeAPI'
 import {
   MemoryRouter as Router,
   Routes,
@@ -28,13 +27,6 @@ window.addEventListener('message', e => {
   const message = e.data
   console.debug(message)
 })
-
-// Want to send messages back out to VS Code from the webview?
-//
-// VSCodeAPI.postMessage({
-//   type: 'whatever',
-//   data: {foo: true}
-// })
 
 const rootEl = document.getElementById('root')
 

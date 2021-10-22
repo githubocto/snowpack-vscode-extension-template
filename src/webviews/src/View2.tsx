@@ -2,14 +2,19 @@ import React, { FunctionComponent } from 'react'
 import { GoMarkGithub } from 'react-icons/go'
 import useAppState from './appState'
 import Toggle from './Toggle'
+import shallow from 'zustand/shallow'
 
 type View2Props = {}
 
 const View2: FunctionComponent<View2Props> = props => {
-  const toggle1 = useAppState(state => state.toggle1)
-  const toggle2 = useAppState(state => state.toggle2)
-  const setToggle1 = useAppState(state => state.setToggle1)
-  const setToggle2 = useAppState(state => state.setToggle2)
+  const [toggle1, setToggle1] = useAppState(
+    state => [state.toggle1, state.setToggle1],
+    shallow
+  )
+  const [toggle2, setToggle2] = useAppState(
+    state => [state.toggle2, state.setToggle2],
+    shallow
+  )
   return (
     <div>
       <h1>

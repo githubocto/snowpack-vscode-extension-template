@@ -10,7 +10,7 @@ type AppState = {
   setToggle2: React.ChangeEventHandler<HTMLInputElement>
 }
 
-const useAppState = createVSCodeZustand<AppState>(set => ({
+const useAppState = createVSCodeZustand<AppState>('myAppState', set => ({
   foo: '',
   bar: 0,
   toggle1: false,

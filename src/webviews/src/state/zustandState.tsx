@@ -1,26 +1,31 @@
 import { nanoid } from 'nanoid'
-import create, { State, StateCreator, StoreApi, UseStore } from 'zustand'
+import create, { State, StateCreator, UseStore } from 'zustand'
 import { persist, StateStorage } from 'zustand/middleware'
 import VSCodeAPI from '../VSCodeAPI'
 
+/**
+ * Creates a Zustand store which is automatically persisted to VS Code state.
+ *
+ * @export
+ * @template TState
+ * @param {string} name A globally-unique name for the store.
+ * @param {StateCreator<TState>} createState A function which creates the initial state.
+ * @return {*}  {UseStore<TState>}
+ */
 export default function createVSCodeZustand<TState extends State>(
+  name: string,
   createState: StateCreator<TState>
 ): UseStore<TState> {
-  const store = create(
+  return create(
     persist(createState, {
-      name: nanoid(),
+      name,
       getStorage: () => VSCodeStateStorage,
     })
   )
-  store.subscribe(state => {
-    VSCodeAPI.setState(state)
-  })
-  return store
 }
 
 const VSCodeStateStorage: StateStorage = {
   getItem: async (name: string): Promise<string | null> => {
-    console.log(name, 'has been retrieved already')
     return await VSCodeAPI.getState()[name]
   },
   setItem: async (name: string, value: string): Promise<void> => {

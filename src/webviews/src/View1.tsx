@@ -7,10 +7,10 @@ import Toggle from './Toggle'
 import VSCodeAPI from './VSCodeAPI'
 type View1Props = {}
 
-const View1: FunctionComponent<View1Props> = props => {
-  const [val, setVal] = useState('')
-  const [success, setSuccess] = useState<string>()
-  const [err, setErr] = useState<string>()
+const View1: FunctionComponent<View1Props> = props => {)
+  const [val, setVal] = useVSCodeState<string>('', 'val')
+  const [success, setSuccess] = useVSCodeState<string>('', 'success')
+  const [err, setErr] = useVSCodeState<string>('', 'err')
   const [checked, setChecked] = useVSCodeState<boolean>(false, 'checked')
   const [checked2, setChecked2] = useVSCodeState<boolean>(false, 'checked2')
   console.log('Rendering View1')
@@ -56,7 +56,10 @@ const View1: FunctionComponent<View1Props> = props => {
         checked={checked2}
         handleChange={e => setChecked2(e.target.checked)}
       />
-      <p>Current VSCodeAPI State: {JSON.stringify(VSCodeAPI.getState())}</p>
+      <h2>Current VSCodeAPI State:</h2>
+      <code>
+        <pre>{JSON.stringify(VSCodeAPI.getState(), null, 2)}</pre>
+      </code>
       <div>
         <Link to="/view2">View 2</Link>
       </div>
